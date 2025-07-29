@@ -1,0 +1,8 @@
+<mujocoinclude>
+  <asset>
+    <texture type="2d" name="base_texture" file="object/base/shaded.png"/>
+    <material name="base_texture" texture="base_texture"/>
+
+    <mesh name="base" file="object/base/base.obj"/>
+  </asset>
+</mujocoinclude>

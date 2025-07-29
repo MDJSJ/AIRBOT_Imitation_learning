@@ -24,6 +24,9 @@ class SimNode(AirbotPlayTaskBase):
         )
 
     def domain_randomization(self):
+        # 域随机化：为提高泛化能力，随机扰动物体位置
+        # 对绿色长方体和紫色方块位置进行微小随机扰动(±0.001m)
+    
         # 随机 2个绿色长方体位置
 
         for z in range(2):
@@ -51,6 +54,10 @@ class SimNode(AirbotPlayTaskBase):
         # camera.quat[:] = Rotation.from_euler("xyz", euler, degrees=False).as_quat()[[3,0,1,2]]
 
     def check_success(self):
+        # 成功条件判定：
+        # 1. 绿色方块要平放(z轴旋转接近0)
+        # 2. 两个桥墩间距约3cm 
+        # 3. 紫色方块要正确叠放在绿色方块附近
         tmat_bridge1 = get_body_tmat(self.mj_data, "bridge1")
         tmat_bridge2 = get_body_tmat(self.mj_data, "bridge2")
         tmat_block1 = get_body_tmat(self.mj_data, "block1_green")
@@ -69,7 +76,8 @@ class SimNode(AirbotPlayTaskBase):
         )
 
 
-cfg = AirbotPlayCfg()
+cfg = AirbotPlayCfg()   
+# 3D高斯散射模型配置
 cfg.gs_model_dict["background"] = "scene/lab3/point_cloud.ply"
 cfg.gs_model_dict["drawer_1"] = "hinge/drawer_1.ply"
 cfg.gs_model_dict["drawer_2"] = "hinge/drawer_2.ply"
@@ -89,11 +97,11 @@ cfg.obj_list = [
     "block_purple5",
     "block_purple6",
 ]
-cfg.timestep = 1 / 240
-cfg.decimation = 4
+cfg.timestep = 1 / 240    # 240Hz仿真频率
+cfg.decimation = 4        # 控制频率为60Hz (240/4)
 cfg.sync = True
 cfg.headless = False
-cfg.render_set = {"fps": 20, "width": 448, "height": 448}
+cfg.render_set = {"fps": 20, "width": 448, "height": 448}  # 渲染设置
 cfg.obs_rgb_cam_id = [0, 1]
 cfg.save_mjb_and_task_config = True
 

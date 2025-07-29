@@ -1,0 +1,31 @@
+<mujoco model="temp_preview_env">
+  <compiler angle="radian" meshdir="../meshes/" texturedir="../meshes/"/>
+
+  <default>
+    <default class="obj_visual">
+      <geom type="mesh" contype="0" conaffinity="0" group="2"/>
+    </default>
+  </default>
+
+  <asset>
+    <mesh name="fixed_meat" content_type="model/obj" file="object/fixed_meat/fixed_meat.obj"/>
+    <mesh name="fixed_meat_part_0" content_type="model/obj" file="object/fixed_meat/part_0.obj"/>
+    <mesh name="fixed_meat_part_1" content_type="model/obj" file="object/fixed_meat/part_1.obj"/>
+    <mesh name="fixed_meat_part_2" content_type="model/obj" file="object/fixed_meat/part_2.obj"/>
+  </asset>
+
+  <worldbody>
+    <geom name="floor" size="2 2 0.1" type="plane" rgba="0.8 0.8 0.8 1"/>
+    <light pos="0 0 3" dir="0 0 -1"/>
+    <body name="fixed_meat" pos="0 0 0.5">
+      <inertial pos="0 0 0" mass="0.001" diaginertia="2e-05 2e-05 2e-05"/>
+      <geom class="obj_visual" mesh="fixed_meat"/>
+      <geom type="mesh" mesh="fixed_meat_part_0"/>
+      <geom type="mesh" mesh="fixed_meat_part_1"/>
+      <geom type="mesh" mesh="fixed_meat_part_2"/>
+      <geom type="mesh" rgba="0.5 0.5 0.5 0" mesh="fixed_meat_part_0"/>
+      <geom type="mesh" rgba="0.5 0.5 0.5 0" mesh="fixed_meat_part_1"/>
+      <geom type="mesh" rgba="0.5 0.5 0.5 0" mesh="fixed_meat_part_2"/>
+    </body>
+  </worldbody>
+</mujoco>
