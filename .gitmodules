@@ -6,7 +6,7 @@
 	url = https://github.com/comfyanonymous/ComfyUI.git
 [submodule "policies/act"]
 	path = policies/act
-	url = https://github.com/OpenGHz/Imitate-All.git
+	url = https://github.com/MDJSJ/Imitate-All.git
 [submodule "submodules/MuJoCo-LiDAR"]
 	path = submodules/MuJoCo-LiDAR
 	url = https://github.com/TATP-233/MuJoCo-LiDAR
